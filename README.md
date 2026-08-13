@@ -24,7 +24,7 @@
 
 开启完全访问后，可以使用自定义词库和词库网络同步功能。WebDAV 只会连接您自行配置的服务器。灵犀输入法不会将您的键入内容发送给开发者或任意第三方。
 
-完整说明请阅读[灵犀输入法隐私政策](https://regomne.github.io/lynxi-input-method/)。
+完整说明请阅读[灵犀输入法隐私政策](https://regomne.github.io/lynxi-input-method/privacy/)。
 
 ## 开始使用
 

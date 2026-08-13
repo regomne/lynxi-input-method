@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>灵犀输入法隐私政策</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #f5f6f8;
+      --surface: #ffffff;
+      --text: #1d1d1f;
+      --secondary: #6e6e73;
+      --border: #d9d9de;
+      --accent: #3478f6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #111214;
+        --surface: #1c1c1e;
+        --text: #f5f5f7;
+        --secondary: #a1a1a6;
+        --border: #3a3a3c;
+        --accent: #64a0ff;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 28px 16px 56px;
+      background: var(--background);
+      color: var(--text);
+      font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 38px clamp(22px, 5vw, 52px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgb(0 0 0 / 6%);
+    }
+    h1 { margin: 0 0 4px; font-size: clamp(28px, 5vw, 38px); line-height: 1.25; }
+    h2 { margin: 34px 0 8px; font-size: 21px; line-height: 1.4; }
+    p, ul { margin: 8px 0; }
+    ul { padding-left: 1.4em; }
+    .meta { color: var(--secondary); margin-bottom: 28px; }
+    .summary {
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+    }
+    a { color: var(--accent); }
+    footer { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--secondary); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>灵犀输入法隐私政策</h1>
+    <p class="meta">生效日期：2026 年 8 月 10 日</p>
+
+    <p class="summary">灵犀输入法不会将您的键入内容发送给开发者，也不使用广告、用户跟踪或第三方分析服务。输入法的基础中文输入无需开启“完全访问”。</p>
+
+    <h2>1. 适用范围</h2>
+    <p>本隐私政策适用于“灵犀输入法”iOS App、其键盘扩展，以及 App 内提供的词库管理和同步功能。</p>
+
+    <h2>2. 键入内容</h2>
+    <p>键盘扩展在设备上处理按键、拼音组合和候选词生成。开发者不会接收、收集或查看您输入的文字。灵犀输入法不包含用于上传键入内容的开发者服务器。</p>
+    <p>在密码框等安全文本输入区域，iOS 可能自动切换到系统键盘；该行为由操作系统控制。</p>
+
+    <h2>3. 本地保存的数据</h2>
+    <p>为提供输入功能，以下数据可能保存在您的设备上：</p>
+    <ul>
+      <li>键盘外观、双拼方案及功能开关等设置；</li>
+      <li>用户词典、词频和候选词学习数据；</li>
+      <li>用于改善本机按键命中率的触摸纠偏数据；</li>
+      <li>运行诊断日志及词库部署状态。</li>
+    </ul>
+    <p>这些数据默认仅保存在设备或灵犀输入法的 App Group 容器中，不会自动发送给开发者。删除 App 会由 iOS 清除相应的应用数据；您也可以通过 App 内设置清除学习数据或同步配置。</p>
+
+    <h2>4. 完全访问</h2>
+    <p>不开启完全访问时，灵犀输入法仍可使用内置基础词库完成中文和英文输入，并在键盘扩展的本地空间中进行智能纠错和词频学习。</p>
+    <p>开启完全访问后，键盘扩展可以访问与主 App 共用的本地容器，从而使用自定义词库和词库网络同步功能。完全访问不会被用于向开发者或任意第三方上传您的键入内容。</p>
+
+    <h2>5. WebDAV 与文件同步</h2>
+    <p>同步功能仅在您主动配置或执行同步时使用。选择 WebDAV 后，词库同步数据会直接发送到您提供的 WebDAV 服务器，或从该服务器下载；该服务器由您或相应服务提供商控制，开发者不会接收这些数据。</p>
+    <p>WebDAV 地址、用户名和远程目录配置会保存在设备上；WebDAV 密码由 iOS Keychain 保存，用于完成您请求的同步。您应了解并遵守所选 WebDAV 服务商的隐私政策，并建议仅使用受信任的 HTTPS 服务。</p>
+    <p>选择文件同步时，App 只访问您通过系统文件选择器明确授权的目录。</p>
+
+    <h2>6. 日志</h2>
+    <p>App 可能在设备本地生成用于排查初始化、词库和性能问题的诊断日志。日志不会自动上传；只有在您主动导出并发送时，接收方才能获得相应内容。发送前请检查其中是否包含您不希望分享的信息。</p>
+
+    <h2>7. 第三方组件</h2>
+    <p>灵犀输入法使用 librime、OpenCC、Yams 等开源组件提供本地输入和配置处理能力。这些组件不代表开发者收集您的个人数据。App 不包含第三方广告 SDK、行为分析 SDK 或跨 App 跟踪功能。</p>
+
+    <h2>8. 数据共享与出售</h2>
+    <p>开发者不会出售您的个人数据，也不会将键入内容用于广告、画像或跨 App 跟踪。除您主动选择的 WebDAV 或文件同步目标外，App 不会主动向第三方共享您的词库数据。</p>
+
+    <h2>9. 您的选择</h2>
+    <ul>
+      <li>您可以不授予完全访问并继续使用基础输入功能；</li>
+      <li>您可以随时在 iOS“设置”中关闭完全访问或移除键盘；</li>
+      <li>您可以在 App 内清除学习数据、同步配置和日志；</li>
+      <li>您可以删除 App，以清除由 iOS 管理的本地应用数据。</li>
+    </ul>
+
+    <h2>10. 儿童隐私</h2>
+    <p>灵犀输入法不会有意收集儿童的个人信息，也不包含定向广告或用户跟踪功能。</p>
+
+    <h2>11. 政策更新</h2>
+    <p>当功能或数据处理方式发生变化时，本政策可能更新。新版政策会在本页面公布，并更新生效日期。</p>
+
+    <h2>12. 联系方式</h2>
+    <p>如对本隐私政策或数据处理方式有疑问，请联系：<a href="mailto:fallingsunz@gmail.com">fallingsunz@gmail.com</a></p>
+
+    <footer>© 2026 灵犀输入法</footer>
+  </main>
+</body>
+</html>
