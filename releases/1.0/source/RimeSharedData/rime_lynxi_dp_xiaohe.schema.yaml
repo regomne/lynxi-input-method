@@ -1,0 +1,49 @@
+# Rime schema
+# encoding: utf-8
+
+# 小鹤双拼 - 继承自基准方案 rime_lynxi_double_pinyin
+
+__include: rime_lynxi_double_pinyin.schema:/
+
+schema:
+  schema_id: rime_lynxi_dp_xiaohe
+  name: "灵犀-小鹤双拼"
+  version: "1"
+
+translator:
+  __include: rime_lynxi_double_pinyin.schema:/translator
+  prism: rime_lynxi_dp_xiaohe
+
+speller:
+  __include: rime_lynxi_double_pinyin.schema:/speller
+  algebra:
+    - erase/^xx$/
+    - derive/^([jqxy])u$/$1v/
+    - derive/^([aoe])([ioun])$/$1$1$2/
+    - xform/^([aoe])(ng)?$/$1$1$2/
+    - xform/iu$/Ⓠ/
+    - xform/(.)ei$/$1Ⓦ/
+    - xform/uan$/Ⓡ/
+    - xform/[uv]e$/Ⓣ/
+    - xform/un$/Ⓨ/
+    - xform/^sh/Ⓤ/
+    - xform/^ch/Ⓘ/
+    - xform/^zh/Ⓥ/
+    - xform/uo$/Ⓞ/
+    - xform/ie$/Ⓟ/
+    - xform/i?ong$/Ⓢ/
+    - xform/ing$|uai$/Ⓚ/
+    - xform/(.)ai$/$1Ⓓ/
+    - xform/(.)en$/$1Ⓕ/
+    - xform/(.)eng$/$1Ⓖ/
+    - xform/[iu]ang$/Ⓛ/
+    - xform/(.)ang$/$1Ⓗ/
+    - xform/ian$/Ⓜ/
+    - xform/(.)an$/$1Ⓙ/
+    - xform/(.)ou$/$1Ⓩ/
+    - xform/[iu]a$/Ⓧ/
+    - xform/iao$/Ⓝ/
+    - xform/(.)ao$/$1Ⓒ/
+    - xform/ui$/Ⓥ/
+    - xform/in$/Ⓑ/
+    - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓀⓁⓂⒿⓏⓍⓃⒸⓋⒷ/qwrtyuiopsdfghklmjzxncvb/

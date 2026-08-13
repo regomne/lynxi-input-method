@@ -1,0 +1,17 @@
+# Rime dictionary
+# encoding: utf-8
+
+---
+name: rime_lynxi
+version: "2023-11-13"
+import_tables:
+  - cn_dicts/char_standard   # 规范用字（通用规范汉字表 8105 字）
+  # - cn_dicts/char_extended   # 扩展用字（繁体字及少量罕见字）
+  - cn_dicts/word_base     # 基础词库
+  - cn_dicts/word_ext      # 扩展词库
+
+  - cn_dicts_cell/composite
+
+...
+
+

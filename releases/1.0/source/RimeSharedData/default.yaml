@@ -1,0 +1,81 @@
+# Rime default settings
+# encoding: utf-8
+
+# 要比共享目录的同名文件的 config_version 大才可以生效
+config_version: '2024-07-12'
+
+# 方案列表
+schema_list:
+  - schema: rime_lynxi_double_pinyin          # 自然码（基准方案）
+  - schema: rime_lynxi_dp_xiaohe              # 小鹤双拼
+  - schema: rime_lynxi_dp_microsoft           # 微软双拼
+  - schema: rime_lynxi_dp_sogou               # 搜狗双拼
+  - schema: rime_lynxi_dp_abc                 # 智能ABC
+  - schema: rime_lynxi_dp_pyjj               # 拼音加加
+  - schema: rime_lynxi_dp_guobiao             # 国标双拼
+
+# 菜单
+menu:
+  page_size: 7  # 候选词个数
+
+# 方案选单相关
+switcher:
+  caption: 「方案选单」
+  hotkeys:
+    - Control+F1
+  save_options:  # 开关记忆（方案中的 switches），从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
+    - ascii_punct
+    - traditionalization
+    - emoji
+    - full_shape
+  fold_options: false            # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
+  abbreviate_options: true      # 折叠时是否缩写选项
+  option_list_separator: ' / '  # 折叠时的选项分隔符
+
+
+# 中西文切换
+#
+# good_old_caps_lock:
+# true   切换大写
+# false  切换中英
+# macOS 偏好设置的优先级更高，如果勾选【使用大写锁定键切换“ABC”输入法】则始终会切换输入法。
+#
+# 切换中英：
+# 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
+# commit_code  上屏原始的编码，然后切换到英文
+# commit_text  上屏拼出的词句，然后切换到英文
+# clear        清除未上屏内容，然后切换到英文
+# inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
+# noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
+#ascii_composer:
+#  good_old_caps_lock: true  # true | false
+#  switch_key:
+#    Caps_Lock: clear      # commit_code | commit_text | clear
+#    Shift_L: commit_code  # commit_code | commit_text | inline_ascii | clear | noop
+#    Shift_R: commit_code  # commit_code | commit_text | inline_ascii | clear | noop
+#    Control_L: noop       # commit_code | commit_text | inline_ascii | clear | noop
+#    Control_R: noop       # commit_code | commit_text | inline_ascii | clear | noop
+
+
+###################################################################################
+
+
+# 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。
+# 写在 default.yaml 里，方便多个方案引用，就是不用每个方案都写一遍了。
+
+
+#punctuator:
+#  full_shape:
+#    __include: punctuation:/full_shape
+#  half_shape:
+#    __include: punctuation:/half_shape
+
+
+# 处理符合特定规则的输入码，如网址、反查
+# 此处配置较为通用的选项，各方案中另增加了和方案功能绑定的 patterns。
+recognizer:
+  patterns:
+
+key_binder:
+  bindings: []
+

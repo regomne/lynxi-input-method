@@ -1,0 +1,47 @@
+# Rime schema
+# encoding: utf-8
+
+# 智能ABC双拼 - 继承自基准方案 rime_lynxi_double_pinyin
+
+__include: rime_lynxi_double_pinyin.schema:/
+
+schema:
+  schema_id: rime_lynxi_dp_abc
+  name: "灵犀-智能ABC"
+  version: "1"
+
+translator:
+  __include: rime_lynxi_double_pinyin.schema:/translator
+  prism: rime_lynxi_dp_abc
+
+speller:
+  __include: rime_lynxi_double_pinyin.schema:/speller
+  algebra:
+    - erase/^xx$/
+    - derive/^([jqxy])u$/$1v/
+    - xform/^zh/Ⓐ/
+    - xform/^ch/Ⓔ/
+    - xform/^sh/Ⓥ/
+    - xform/^([aoe].*)$/Ⓞ$1/
+    - xform/ei$/Ⓠ/
+    - xform/ian$/Ⓦ/
+    - xform/er$|iu$/Ⓡ/
+    - xform/[iu]ang$/Ⓣ/
+    - xform/ing$/Ⓨ/
+    - xform/uo$/Ⓞ/
+    - xform/uan$/Ⓟ/
+    - xform/i?ong$/Ⓢ/
+    - xform/[iu]a$/Ⓓ/
+    - xform/en$/Ⓕ/
+    - xform/eng$/Ⓖ/
+    - xform/ang$/Ⓗ/
+    - xform/an$/Ⓙ/
+    - xform/iao$/Ⓩ/
+    - xform/ao$/Ⓚ/
+    - xform/in$|uai$/Ⓒ/
+    - xform/ai$/Ⓛ/
+    - xform/ie$/Ⓧ/
+    - xform/ou$/Ⓑ/
+    - xform/un$/Ⓝ/
+    - xform/[uv]e$|ui$/Ⓜ/
+    - xlit/ⓆⓌⓇⓉⓎⓄⓅⓈⒶⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂⒺ/qwrtyopsadfghjklzxcvbnme/

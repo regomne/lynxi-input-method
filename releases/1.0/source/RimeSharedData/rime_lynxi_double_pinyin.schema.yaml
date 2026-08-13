@@ -1,0 +1,164 @@
+# Rime schema
+# encoding: utf-8
+
+# 复制自 rime_frost.schema.yaml ，适配了双拼。
+# 双拼键位映射复制自 https://github.com/rime/rime-double-pinyin
+# 双拼之间主要就是 speller/algebra 和 translator/preedit_format 这里有区别。
+#
+# 全拼的自定义文本和双拼有些冲突，改成了 custom_phrase_double ，需要创建 custom_phrase_double.txt 文件。
+
+
+# 方案说明
+schema:
+  schema_id: rime_lynxi_double_pinyin
+  name: 灵犀-自然码
+  version: "1"
+  author:
+    - Dvel
+  description: |
+    灵犀双拼 - 自然码
+    https://github.com/iDvel/rime-ice
+
+
+# 开关
+# reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
+# states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+# abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+switches:
+  - name: ascii_mode
+    reset: 1
+    states: [ 中文, 西文 ]
+  - name: ascii_punct  # 中英标点
+    states: [ 。，, ．， ]
+  - name: traditionalization
+    reset: 0
+    states: [ 汉字, 漢字 ]
+  - name: emoji
+    states: [ "🈚️️", "🈶️️" ]
+    reset: 1
+  - name: full_shape
+    states: [ 半角, 全角 ]
+
+
+# 输入引擎
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+    - table_translator@english_dict     # 英文词典
+    - table_translator@custom_phrase    # 自定义短语 custom_phrase_double.txt
+  filters:
+    - simplifier@emoji                              # Emoji
+    - simplifier@traditionalize                     # 简繁切换
+    - uniquifier                                    # 去重
+
+
+
+# 主翻译器，拼音
+translator:
+  dictionary: rime_lynxi          # 挂载词库 rime_frost.dict.yaml
+  prism: rime_lynxi_double_pinyin          # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
+  mix_by_frequency: true         # 单字和词组按词频混排，而非词组优先
+  preedit_format:               # preedit_format 影响到输入框的显示和”Shift+回车”上屏的字符
+
+
+# 自定义短语
+custom_phrase:
+  dictionary: ""
+  user_dict: custom_phrase
+  db_class: stabledb
+  enable_completion: false # 补全提示
+  enable_sentence: false   # 禁止造句
+  initial_quality: 99      # custom_phrase 的权重应该比 pinyin 大
+
+
+# Emoji
+emoji:
+  option_name: emoji
+  opencc_config: emoji.json
+  tips: all                # 将原文放入 comment，用于计算 emoji 消耗的音节数
+  inherit_comment: false   # 在 corrector.lua 及反查中，emoji 返回空注释
+
+
+# 简繁切换
+traditionalize:
+  option_name: traditionalization
+  opencc_config: s2t.json  # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  tips: none               # 转换提示: all 都显示 | char 仅单字显示 | none 不显示。
+  tags: [ abc ]  # 限制在对应 tag，不对其他如反查的内容做简繁转换
+
+# 英文词典（stabledb 直接读 txt，不需要部署编译）
+english_dict:
+  dictionary: ""
+  user_dict: english_dict
+  db_class: stabledb
+  enable_completion: true
+  enable_sentence: false
+  initial_quality: 0
+
+# 处理符合特定规则的输入码，如网址、反查
+
+recognizer:
+  import_preset: default  # 从 default.yaml 继承通用的
+  patterns:
+
+# 从 default 继承快捷键
+key_binder:
+  import_preset: default  # 从 default.yaml 继承通用的
+  # bindings:             # 也可以再增加方案专有的
+
+
+# 拼写设定
+speller:
+  # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  delimiter: " '"  # 第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
+  algebra:
+    - erase/^xx$/
+    - derive/^([jqxy])u$/$1v/
+    - derive/^([aoe])([ioun])$/$1$1$2/
+    - xform/^([aoe])(ng)?$/$1$1$2/
+    - xform/iu$/Ⓠ/
+    - xform/[iu]a$/Ⓦ/
+    - xform/[uv]an$/Ⓡ/
+    - xform/[uv]e$/Ⓣ/
+    - xform/ing$|uai$/Ⓨ/
+    - xform/^sh/Ⓤ/
+    - xform/^ch/Ⓘ/
+    - xform/^zh/Ⓥ/
+    - xform/uo$/Ⓞ/
+    - xform/[uv]n$/Ⓟ/
+    - xform/(.)i?ong$/$1Ⓢ/
+    - xform/[iu]ang$/Ⓓ/
+    - xform/(.)en$/$1Ⓕ/
+    - xform/(.)eng$/$1Ⓖ/
+    - xform/(.)ang$/$1Ⓗ/
+    - xform/ian$/Ⓜ/
+    - xform/(.)an$/$1Ⓙ/
+    - xform/iao$/Ⓒ/
+    - xform/(.)ao$/$1Ⓚ/
+    - xform/(.)ai$/$1Ⓛ/
+    - xform/(.)ei$/$1Ⓩ/
+    - xform/ie$/Ⓧ/
+    - xform/ui$/Ⓥ/
+    - xform/(.)ou$/$1Ⓑ/
+    - xform/in$/Ⓝ/
+    - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
+    # - abbrev/^(.).+$/$1/  # 首字母简拼，开启后会导致 3 个字母时 kj'x 变成 k'jx 的问题

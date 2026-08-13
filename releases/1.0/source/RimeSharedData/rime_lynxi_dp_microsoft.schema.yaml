@@ -1,0 +1,53 @@
+# Rime schema
+# encoding: utf-8
+
+# 微软双拼 - 继承自基准方案 rime_lynxi_double_pinyin
+
+__include: rime_lynxi_double_pinyin.schema:/
+
+schema:
+  schema_id: rime_lynxi_dp_microsoft
+  name: "灵犀-微软双拼"
+  version: "1"
+
+translator:
+  __include: rime_lynxi_double_pinyin.schema:/translator
+  prism: rime_lynxi_dp_microsoft
+
+speller:
+  __include: rime_lynxi_double_pinyin.schema:/speller
+  alphabet: zyxwvutsrqponmlkjihgfedcba;ZYXWVUTSRQPONMLKJIHGFEDCBA
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  algebra:
+    - erase/^xx$/
+    - derive/^([jqxy])u$/$1v/
+    - derive/^([aoe].*)$/o$1/
+    - xform/^([ae])(.*)$/$1$1$2/
+    - xform/iu$/Ⓠ/
+    - xform/[iu]a$/Ⓦ/
+    - xform/er$|[uv]an$/Ⓡ/
+    - xform/[uv]e$/Ⓣ/
+    - xform/v$|uai$/Ⓨ/
+    - xform/^sh/Ⓤ/
+    - xform/^ch/Ⓘ/
+    - xform/^zh/Ⓥ/
+    - xform/uo$/Ⓞ/
+    - xform/[uv]n$/Ⓟ/
+    - xform/i?ong$/Ⓢ/
+    - xform/[iu]ang$/Ⓓ/
+    - xform/(.)en$/$1Ⓕ/
+    - xform/(.)eng$/$1Ⓖ/
+    - xform/(.)ang$/$1Ⓗ/
+    - xform/ian$/Ⓜ/
+    - xform/(.)an$/$1Ⓙ/
+    - xform/iao$/Ⓒ/
+    - xform/(.)ao$/$1Ⓚ/
+    - xform/(.)ai$/$1Ⓛ/
+    - xform/(.)ei$/$1Ⓩ/
+    - xform/ie$/Ⓧ/
+    - xform/ui$/Ⓥ/
+    - derive/Ⓣ$/Ⓥ/
+    - xform/(.)ou$/$1Ⓑ/
+    - xform/in$/Ⓝ/
+    - xform/ing$/;/
+    - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
